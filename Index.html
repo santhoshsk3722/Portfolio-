@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }body {
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  padding-bottom: 100px;
+}
+
+header {
+  background: #4a90e2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 15px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #4a90e2;
+}
+
+.flex-sections {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.card {
+  flex: 1 1 30%;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  min-width: 250px;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #357abd;
+}
+
+form {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .flex-sections {
+    flex-direction: column;
+  }
+  .card {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+  </header>  <nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>  <div class="flex-sections">
+    <section class="card" id="about">
+      <h2>About Me</h2>
+      <p>I am a passionate developer learning web development and building cool projects!</p>
+    </section><section class="card" id="skills">
+  <h2>Skills</h2>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+</section>
+
+<section class="card" id="projects">
+  <h2>Projects</h2>
+  <p>Coming soon...</p>
+</section>
+
+  </div>  <form id="contactForm">
+    <h2>Contact Me</h2>
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br><br><label>Email:</label><br>
+<input type="email" id="email" required><br><br>
+
+<label>Message:</label><br>
+<textarea id="message" required></textarea><br><br>
+
+<button type="submit">Submit</button>
+<p id="formStatus"></p>
+
+  </form><button id="backToTop" title="Go to top">↑ Top</button>
+
+  <script>
+    // Back to top button functionality
+    const topBtn = document.getElementById("backToTop");
+    window.onscroll = function () {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topBtn.style.display = "block";
+      } else {
+        topBtn.style.display = "none";
+      }
+    };
+    topBtn.onclick = function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // Contact form validation
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const status = document.getElementById("formStatus");
+
+      if (name === "" || email === "" || message === "") {
+        status.textContent = "Please fill in all fields.";
+        status.style.color = "red";
+      } else {
+        status.textContent = "Message sent successfully!";
+        status.style.color = "green";
+        document.getElementById("contactForm").reset();
+      }
+    });
+  </script></body>
+</html>
